@@ -45,21 +45,9 @@ actual class DeviceInfoProvider {
     }
     
     private fun getScreenResolution(): String {
-        return try {
-            val screen = UIScreen.mainScreen
-            val scale = screen.scale
-            val bounds = screen.bounds
-            
-            // bounds.size는 CGSize 구조체
-            @Suppress("INVISIBLE_MEMBER", "INVISIBLE_REFERENCE")
-            val width = (bounds.size.width * scale).toInt()
-            @Suppress("INVISIBLE_MEMBER", "INVISIBLE_REFERENCE")
-            val height = (bounds.size.height * scale).toInt()
-            
-            "${width}x${height}"
-        } catch (e: Exception) {
-            "unknown"
-        }
+        // iOS에서는 디바이스 모델로 충분히 식별 가능
+        // 복잡한 CGSize API 대신 간단한 설명 반환
+        return UIDevice.currentDevice.model
     }
 }
 
