@@ -1,0 +1,36 @@
+spring:
+  application:
+    name: deeplink-server
+  
+  datasource:
+    url: jdbc:oracle:thin:@localhost:1521:XE
+    username: deeplink
+    password: deeplink
+    driver-class-name: oracle.jdbc.OracleDriver
+  
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.OracleDialect
+        format_sql: true
+  
+  data:
+    redis:
+      host: localhost
+      port: 6379
+      # Redis는 디바이스 핑거프린트를 임시 저장하는데 사용 (TTL 24시간)
+
+server:
+  port: 8080
+
+deeplink:
+  # 디바이스 매칭 타임윈도우 (밀리초, 기본 24시간)
+  matching-window-ms: 86400000
+  # 링크 만료 시간 (밀리초, 기본 30일)
+  link-expiry-ms: 2592000000
+  # 베이스 URL (실제 배포 시 수정 필요)
+  base-url: http://localhost:8080
+

@@ -1,0 +1,41 @@
+# Auto detect text files and perform LF normalization
+* text=auto
+
+# Kotlin
+*.kt text
+*.kts text
+
+# Java
+*.java text
+
+# Swift
+*.swift text
+
+# XML
+*.xml text
+
+# Properties
+*.properties text
+
+# Gradle
+*.gradle text
+*.gradle.kts text
+
+# Markdown
+*.md text
+
+# YAML
+*.yml text
+*.yaml text
+
+# Binary files
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.gif binary
+*.ico binary
+*.jar binary
+*.so binary
+*.dylib binary
+*.dll binary
+

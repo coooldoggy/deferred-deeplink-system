@@ -13,5 +13,7 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "multiplatform-library-template"
+rootProject.name = "deferred-deeplink-system"
 include(":library")
+include(":server")
+include(":sample-android")

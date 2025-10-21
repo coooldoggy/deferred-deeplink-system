@@ -4,16 +4,17 @@ import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 plugins {
     alias(libs.plugins.kotlinMultiplatform)
     alias(libs.plugins.android.kotlin.multiplatform.library)
+    alias(libs.plugins.kotlinSerialization)
     alias(libs.plugins.vanniktech.mavenPublish)
 }
 
-group = "io.github.kotlin"
+group = "com.coooldoggy.deeplink"
 version = "1.0.0"
 
 kotlin {
     jvm()
     androidLibrary {
-        namespace = "org.jetbrains.kotlinx.multiplatform.library.template"
+        namespace = "com.coooldoggy.deeplink.sdk"
         compileSdk = libs.versions.android.compileSdk.get().toInt()
         minSdk = libs.versions.android.minSdk.get().toInt()
 
@@ -38,11 +39,28 @@ kotlin {
 
     sourceSets {
         commonMain.dependencies {
-            //put your multiplatform dependencies here
+            // Ktor Client
+            implementation(libs.ktor.client.core)
+            implementation(libs.ktor.client.content.negotiation)
+            implementation(libs.ktor.serialization.kotlinx.json)
+            
+            // Kotlinx Serialization
+            implementation(libs.kotlinx.serialization.json)
+            
+            // Coroutines
+            implementation(libs.kotlinx.coroutines.core)
         }
 
         commonTest.dependencies {
             implementation(libs.kotlin.test)
+        }
+        
+        androidMain.dependencies {
+            implementation(libs.ktor.client.okhttp)
+        }
+        
+        iosMain.dependencies {
+            implementation(libs.ktor.client.darwin)
         }
     }
 }
@@ -55,28 +73,28 @@ mavenPublishing {
     coordinates(group.toString(), "library", version.toString())
 
     pom {
-        name = "My library"
-        description = "A library."
-        inceptionYear = "2024"
-        url = "https://github.com/kotlin/multiplatform-library-template/"
+        name = "Deferred Deep Link SDK"
+        description = "Kotlin Multiplatform SDK for Deferred Deep Linking (Android & iOS)"
+        inceptionYear = "2025"
+        url = "https://github.com/coooldoggy/deferred-deeplink-system/"
         licenses {
             license {
-                name = "XXX"
-                url = "YYY"
-                distribution = "ZZZ"
+                name = "MIT License"
+                url = "https://opensource.org/licenses/MIT"
+                distribution = "repo"
             }
         }
         developers {
             developer {
-                id = "XXX"
-                name = "YYY"
-                url = "ZZZ"
+                id = "coooldoggy"
+                name = "coooldoggy"
+                url = "https://github.com/coooldoggy"
             }
         }
         scm {
-            url = "XXX"
-            connection = "YYY"
-            developerConnection = "ZZZ"
+            url = "https://github.com/coooldoggy/deferred-deeplink-system"
+            connection = "scm:git:git://github.com/coooldoggy/deferred-deeplink-system.git"
+            developerConnection = "scm:git:ssh://github.com/coooldoggy/deferred-deeplink-system.git"
         }
     }
 }
