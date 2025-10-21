@@ -6,6 +6,7 @@ import com.coooldoggy.deeplink.sdk.models.DeviceMatchResponse
 import io.ktor.client.*
 import io.ktor.client.call.*
 import io.ktor.client.plugins.contentnegotiation.*
+import io.ktor.client.plugins.logging.*
 import io.ktor.client.request.*
 import io.ktor.http.*
 import io.ktor.serialization.kotlinx.json.*
@@ -30,6 +31,12 @@ class DeepLinkSDK(
                 isLenient = true
                 prettyPrint = false
             })
+        }
+        
+        // 디버깅용 로깅
+        install(Logging) {
+            logger = Logger.SIMPLE
+            level = LogLevel.ALL
         }
     }
     
