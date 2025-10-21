@@ -46,11 +46,10 @@ actual class DeviceInfoProvider {
     
     private fun getScreenResolution(): String {
         val screen = UIScreen.mainScreen
-        val scale = screen.scale
-        val nativeBounds = screen.nativeBounds
+        val bounds = screen.nativeBounds
         
-        val width = nativeBounds.size.width.toInt()
-        val height = nativeBounds.size.height.toInt()
+        val width = bounds.size.useContents { width }.toInt()
+        val height = bounds.size.useContents { height }.toInt()
         
         return "${width}x${height}"
     }
