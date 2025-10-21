@@ -45,13 +45,21 @@ actual class DeviceInfoProvider {
     }
     
     private fun getScreenResolution(): String {
-        val screen = UIScreen.mainScreen
-        val bounds = screen.nativeBounds
-        
-        val width = bounds.size.useContents { width }.toInt()
-        val height = bounds.size.useContents { height }.toInt()
-        
-        return "${width}x${height}"
+        return try {
+            val screen = UIScreen.mainScreen
+            val scale = screen.scale
+            val bounds = screen.bounds
+            
+            // bounds.size는 CGSize 구조체
+            @Suppress("INVISIBLE_MEMBER", "INVISIBLE_REFERENCE")
+            val width = (bounds.size.width * scale).toInt()
+            @Suppress("INVISIBLE_MEMBER", "INVISIBLE_REFERENCE")
+            val height = (bounds.size.height * scale).toInt()
+            
+            "${width}x${height}"
+        } catch (e: Exception) {
+            "unknown"
+        }
     }
 }
 
