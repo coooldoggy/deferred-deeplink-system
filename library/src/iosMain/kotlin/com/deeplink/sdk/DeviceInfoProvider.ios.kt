@@ -2,7 +2,9 @@ package com.deeplink.sdk
 
 import platform.UIKit.*
 import platform.Foundation.*
+import kotlinx.cinterop.ExperimentalForeignApi
 
+@OptIn(ExperimentalForeignApi::class)
 actual class DeviceInfoProvider {
     actual fun getDeviceInfo(): DeviceInfo {
         return DeviceInfo(
@@ -44,11 +46,11 @@ actual class DeviceInfoProvider {
     
     private fun getScreenResolution(): String {
         val screen = UIScreen.mainScreen
-        val bounds = screen.bounds
         val scale = screen.scale
+        val nativeBounds = screen.nativeBounds
         
-        val width = (bounds.size.width * scale).toInt()
-        val height = (bounds.size.height * scale).toInt()
+        val width = nativeBounds.size.width.toInt()
+        val height = nativeBounds.size.height.toInt()
         
         return "${width}x${height}"
     }
