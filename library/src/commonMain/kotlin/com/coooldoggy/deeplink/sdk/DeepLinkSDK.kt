@@ -1,8 +1,8 @@
 package com.coooldoggy.deeplink.sdk
 
-import com.deeplink.sdk.models.DeepLinkResult
-import com.deeplink.sdk.models.DeviceMatchRequest
-import com.deeplink.sdk.models.DeviceMatchResponse
+import com.coooldoggy.deeplink.sdk.models.DeepLinkResult
+import com.coooldoggy.deeplink.sdk.models.DeviceMatchRequest
+import com.coooldoggy.deeplink.sdk.models.DeviceMatchResponse
 import io.ktor.client.*
 import io.ktor.client.call.*
 import io.ktor.client.plugins.contentnegotiation.*
