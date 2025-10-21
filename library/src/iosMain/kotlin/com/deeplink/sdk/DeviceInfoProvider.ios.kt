@@ -47,8 +47,8 @@ actual class DeviceInfoProvider {
         val bounds = screen.bounds
         val scale = screen.scale
         
-        val width = (bounds.useContents { size.width } * scale).toInt()
-        val height = (bounds.useContents { size.height } * scale).toInt()
+        val width = (bounds.size.width * scale).toInt()
+        val height = (bounds.size.height * scale).toInt()
         
         return "${width}x${height}"
     }

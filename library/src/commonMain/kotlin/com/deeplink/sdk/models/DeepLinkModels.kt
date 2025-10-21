@@ -13,7 +13,7 @@ data class DeviceMatchRequest(
     val language: String? = null,
     val timezone: String? = null,
     val screenResolution: String? = null,
-    val timestamp: Long = System.currentTimeMillis()
+    val timestamp: Long = 0L  // 서버에서 자동으로 현재 시간 사용
 )
 
 @Serializable
