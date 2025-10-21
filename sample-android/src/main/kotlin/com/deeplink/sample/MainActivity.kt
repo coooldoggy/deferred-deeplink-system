@@ -89,6 +89,9 @@ class MainActivity : AppCompatActivity() {
                     append("Score: ${String.format("%.0f%%", (response.matchScore ?: 0.0) * 100)}")
                 }
                 binding.btnOpenProduct.visibility = View.VISIBLE
+                
+                // 🔥 자동으로 해당 화면으로 이동
+                navigateToDeepLink(response)
             }
             
             is DeepLinkResult.NoMatch -> {
@@ -151,6 +154,39 @@ class MainActivity : AppCompatActivity() {
         binding.progressBar.visibility = if (show) View.VISIBLE else View.GONE
         binding.btnCheckAgain.isEnabled = !show
         binding.btnReset.isEnabled = !show
+    }
+    
+    /**
+     * Deep Link에 따라 자동으로 화면 이동
+     */
+    private fun navigateToDeepLink(response: com.deeplink.sdk.models.DeviceMatchResponse) {
+        val targetUrl = response.targetUrl ?: return
+        
+        addLog("🚀 자동 이동: $targetUrl", isSuccess = true)
+        
+        // URL 파싱 (예: coooldoggy://product/123)
+        when {
+            targetUrl.contains("product") -> {
+                // 상품 화면으로 이동
+                val intent = Intent(this, ProductActivity::class.java).apply {
+                    response.customData?.let { data ->
+                        data["productId"]?.let { putExtra("productId", it) }
+                        data["discount"]?.let { putExtra("discount", it) }
+                    }
+                }
+                startActivity(intent)
+            }
+            
+            targetUrl.contains("promo") -> {
+                // 프로모션 화면으로 이동
+                addLog("프로모션 화면으로 이동 (구현 필요)")
+                // startActivity(Intent(this, PromotionActivity::class.java))
+            }
+            
+            else -> {
+                addLog("알 수 없는 URL 형식: $targetUrl")
+            }
+        }
     }
 }
 

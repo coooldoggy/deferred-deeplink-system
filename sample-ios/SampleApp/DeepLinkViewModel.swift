@@ -70,6 +70,11 @@ class DeepLinkViewModel: ObservableObject {
             
             self.result = .success(response)
             
+            // 🔥 자동으로 해당 화면으로 이동
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                self.navigateToDeepLink(response)
+            }
+            
         case is DeepLinkResult.NoMatch:
             addLog("ℹ️ 매칭된 딥링크 없음 (일반 설치)", type: .info)
             self.result = .noMatch
@@ -94,6 +99,26 @@ class DeepLinkViewModel: ObservableObject {
             type: type
         )
         logs.append(log)
+    }
+    
+    /**
+     * Deep Link에 따라 자동으로 화면 이동
+     */
+    private func navigateToDeepLink(_ response: DeviceMatchResponse) {
+        guard let targetUrl = response.targetUrl else { return }
+        
+        addLog("🚀 자동 이동: \(targetUrl)", type: .success)
+        
+        // URL 파싱 (예: coooldoggy://product/123)
+        if targetUrl.contains("product") {
+            // 상품 화면으로 이동
+            showProductScreen = true
+        } else if targetUrl.contains("promo") {
+            // 프로모션 화면으로 이동
+            addLog("프로모션 화면으로 이동 (구현 필요)", type: .info)
+        } else {
+            addLog("알 수 없는 URL 형식: \(targetUrl)", type: .info)
+        }
     }
 }
 
