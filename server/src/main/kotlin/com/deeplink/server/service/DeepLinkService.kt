@@ -183,7 +183,14 @@ class DeepLinkService(
                 screenResolution = candidate.screenResolution
             )
             
-            val timeDiff = request.timestamp - 
+            // timestamp가 0이면 현재 시간 사용 (SDK에서 0으로 보냄)
+            val requestTimestamp = if (request.timestamp == 0L) {
+                System.currentTimeMillis()
+            } else {
+                request.timestamp
+            }
+            
+            val timeDiff = requestTimestamp - 
                 candidate.createdAt.toInstant(ZoneOffset.UTC).toEpochMilli()
             
             val score = FingerprintUtil.calculateMatchScore(
