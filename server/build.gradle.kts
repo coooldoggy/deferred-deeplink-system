@@ -26,8 +26,14 @@ dependencies {
     // Oracle Database
     runtimeOnly("com.oracle.database.jdbc:ojdbc11:23.3.0.23.09")
     
-    // Redis (for caching device fingerprints)
-    implementation("org.springframework.boot:spring-boot-starter-data-redis")
+    // H2 Database (for local testing without DB)
+    runtimeOnly("com.h2database:h2:2.2.224")
+    
+    // Redis (for caching device fingerprints) - optional
+    implementation("org.springframework.boot:spring-boot-starter-data-redis") {
+        isTransitive = false  // Redis 없어도 시작 가능
+    }
+    compileOnly("redis.clients:jedis:5.1.0")
     
     // UA Parser (for User-Agent parsing)
     implementation("com.github.ua-parser:uap-java:1.5.4")

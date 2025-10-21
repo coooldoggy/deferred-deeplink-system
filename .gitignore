@@ -110,7 +110,7 @@ pom.xml.versionsBackup
 
 # Environment files (보안상 중요)
 .env
-application-local.yml
+# application-local.yml은 예제용이므로 포함
 application-prod.yml
 
 # Framework builds
