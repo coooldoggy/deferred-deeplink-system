@@ -1,4 +1,4 @@
-package com.deeplink.sdk
+package com.coooldoggy.deeplink.sdk
 
 actual class DeviceInfoProvider {
     actual fun getDeviceInfo(): DeviceInfo {

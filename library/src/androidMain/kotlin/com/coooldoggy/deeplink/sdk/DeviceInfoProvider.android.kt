@@ -1,4 +1,4 @@
-package com.deeplink.sdk
+package com.coooldoggy.deeplink.sdk
 
 import android.content.Context
 import android.os.Build

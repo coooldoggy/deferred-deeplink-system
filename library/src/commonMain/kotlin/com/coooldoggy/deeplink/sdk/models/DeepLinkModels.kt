@@ -1,4 +1,4 @@
-package com.deeplink.sdk.models
+package com.coooldoggy.deeplink.sdk.models
 
 import kotlinx.serialization.Serializable
 

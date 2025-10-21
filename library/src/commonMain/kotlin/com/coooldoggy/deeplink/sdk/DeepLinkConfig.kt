@@ -1,4 +1,4 @@
-package com.deeplink.sdk
+package com.coooldoggy.deeplink.sdk
 
 /**
  * DeepLink SDK 설정

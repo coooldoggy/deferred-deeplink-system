@@ -1,8 +1,8 @@
-package com.deeplink.sample
+package com.coooldoggy.deeplink.sample
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import com.deeplink.sample.databinding.ActivityProductBinding
+import com.coooldoggy.deeplink.sample.databinding.ActivityProductBinding
 
 /**
  * 딥링크로 이동하는 상품 화면 예제

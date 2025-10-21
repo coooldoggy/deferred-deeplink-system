@@ -6,8 +6,8 @@ import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
 import com.coooldoggy.deeplink.sample.databinding.ActivityMainBinding
-import com.coooldoggy.deeplink.sdk.DeepLinkSDKHelper
-import com.coooldoggy.deeplink.sdk.models.DeepLinkResult
+import com.deeplink.sdk.DeepLinkSDKHelper
+import com.deeplink.sdk.models.DeepLinkResult
 import kotlinx.coroutines.launch
 import java.text.SimpleDateFormat
 import java.util.*
@@ -159,7 +159,7 @@ class MainActivity : AppCompatActivity() {
     /**
      * Deep Link에 따라 자동으로 화면 이동
      */
-    private fun navigateToDeepLink(response: com.coooldoggy.deeplink.sdk.models.DeviceMatchResponse) {
+    private fun navigateToDeepLink(response: com.deeplink.sdk.models.DeviceMatchResponse) {
         val targetUrl = response.targetUrl ?: return
         
         addLog("🚀 자동 이동: $targetUrl", isSuccess = true)

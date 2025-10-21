@@ -1,4 +1,4 @@
-package com.deeplink.sdk
+package com.coooldoggy.deeplink.sdk
 
 import com.deeplink.sdk.models.DeepLinkResult
 import platform.Foundation.NSUserDefaults

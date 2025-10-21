@@ -1,7 +1,7 @@
 package com.coooldoggy.deeplink.sample
 
 import android.app.Application
-import com.coooldoggy.deeplink.sdk.DeepLinkSDKHelper
+import com.deeplink.sdk.DeepLinkSDKHelper
 
 class SampleApplication : Application() {
     override fun onCreate() {
