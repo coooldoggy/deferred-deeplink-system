@@ -42,7 +42,7 @@ object DeepLinkSDKHelper {
      */
     fun checkDeferredDeepLink(
         context: Context,
-        callback: (com.deeplink.sdk.models.DeepLinkResult) -> Unit
+        callback: (com.coooldoggy.deeplink.sdk.models.DeepLinkResult) -> Unit
     ) {
         val currentSdk = sdk ?: throw IllegalStateException(
             "SDK not initialized. Call initialize() first."
@@ -52,7 +52,7 @@ object DeepLinkSDKHelper {
         
         // 이미 확인했는지 체크
         if (prefs.getBoolean(KEY_DEEPLINK_CHECKED, false)) {
-            callback(com.deeplink.sdk.models.DeepLinkResult.NoMatch)
+            callback(com.coooldoggy.deeplink.sdk.models.DeepLinkResult.NoMatch)
             return
         }
         
@@ -70,7 +70,7 @@ object DeepLinkSDKHelper {
     /**
      * SDK suspend 함수 사용
      */
-    suspend fun checkDeferredDeepLinkSuspend(context: Context): com.deeplink.sdk.models.DeepLinkResult {
+    suspend fun checkDeferredDeepLinkSuspend(context: Context): com.coooldoggy.deeplink.sdk.models.DeepLinkResult {
         val currentSdk = sdk ?: throw IllegalStateException(
             "SDK not initialized. Call initialize() first."
         )
@@ -79,7 +79,7 @@ object DeepLinkSDKHelper {
         
         // 이미 확인했는지 체크
         if (prefs.getBoolean(KEY_DEEPLINK_CHECKED, false)) {
-            return com.deeplink.sdk.models.DeepLinkResult.NoMatch
+            return com.coooldoggy.deeplink.sdk.models.DeepLinkResult.NoMatch
         }
         
         // 디바이스 ID 가져오기 또는 생성
