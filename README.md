@@ -179,7 +179,29 @@
 
 ## 🚀 빠른 시작
 
-### 1. 서버 설정
+### 🎯 로컬 테스트 (DB 없이) - 추천!
+
+**가장 빠른 방법:** Oracle/Redis 없이 H2 in-memory DB로 바로 테스트
+
+```bash
+# 서버 실행
+./gradlew :server:bootRun --args='--spring.profiles.active=local'
+
+# 새 터미널에서 테스트
+curl -X POST http://localhost:8080/api/v1/links \
+  -H "Content-Type: application/json" \
+  -d '{"targetUrl":"coooldoggy://product/123","campaignName":"Test"}'
+
+# Android 샘플 앱 실행 (Android Studio)
+# - sample-android 모듈 선택
+# - Run 버튼 클릭
+```
+
+**상세 가이드:** [server/LOCAL_TEST.md](./server/LOCAL_TEST.md)
+
+---
+
+### 1. 프로덕션 서버 설정
 
 #### Oracle 데이터베이스 준비
 
