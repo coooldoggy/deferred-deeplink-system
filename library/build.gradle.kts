@@ -11,14 +11,18 @@ plugins {
 group = "com.coooldoggy.deeplink"
 version = "1.0.0"
 
+java {
+    toolchain {
+        languageVersion.set(JavaLanguageVersion.of(17))
+    }
+}
+
 kotlin {
     jvm()
     androidLibrary {
         namespace = "com.coooldoggy.deeplink.sdk"
         compileSdk = libs.versions.android.compileSdk.get().toInt()
         minSdk = libs.versions.android.minSdk.get().toInt()
-
-        withJava() // enable java compilation support
 
         compilations.configureEach {
             compilerOptions.configure {
