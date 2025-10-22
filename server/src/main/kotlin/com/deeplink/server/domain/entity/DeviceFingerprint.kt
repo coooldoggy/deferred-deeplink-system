@@ -42,7 +42,7 @@ data class DeviceFingerprint(
     @Column(length = 50)
     val browserVersion: String? = null,
     
-    @Column(length = 10)
+    @Column(length = 100)
     val language: String? = null,
     
     @Column(length = 50)
